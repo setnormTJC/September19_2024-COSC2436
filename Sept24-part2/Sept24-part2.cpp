@@ -12,11 +12,31 @@
 //{
 //
 //};
+
+template<typename T> 
+void printVec(vector<T> listOfThings)
+{
+    for (const T& thing : listOfThings) {
+        std::cout << thing << " ";
+    }
+}
+
+using std::cout; 
+
 int main()
 {
     //A aobj()
-    std::vector<int> vec1 = { 1, 3, 5, 7, 9 };
-    std::vector<int> vec2 = { 2, 4, 6, 8, 10 };
+    std::vector<int> vec1 = { 1, 3, 5, 7, 9, 11, 17 };
+
+   
+    std::random_shuffle(vec1.begin(), vec1.end());
+    //std::shuffle(vec1.begin(), vec1.end(), rand());
+
+    cout << "After shuffling, vec1 contains: \n";
+    printVec(vec1); 
+
+
+    std::vector<int> vec2 = { 2, 4, 6, 8, 10, 18 };
 
     // Vector to hold the merged result
     std::vector<int> mergedVec(vec1.size() + vec2.size());
@@ -24,13 +44,15 @@ int main()
     // Merging the two sorted vectors
     //std::merge(vec1, vec2); 
 
-    std::merge(vec1.begin() + 1, vec1.end(), vec2.begin(), vec2.end(), mergedVec.begin());
+    std::merge(vec1.begin(), vec1.end(),
+                vec2.begin(), vec2.end(), 
+                mergedVec.begin());
+
 
     //Displaying the merged vector
-    std::cout << "Merged Vector: ";
-    for (const int& num : mergedVec) {
-        std::cout << num << " ";
-    }
+    std::cout << "\n\nMerged Vector: ";
+    printVec(mergedVec); 
+
     std::cout << std::endl;
 
     //vector<int> unsortedNums = { 8, 6, 7, 5, 3, 0, 9, 1 }; 
