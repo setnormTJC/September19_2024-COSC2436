@@ -6,7 +6,10 @@
 #include<algorithm> 
 
 
+
 using std::vector, std::cout, std::string;
+
+
 
 template<typename T>
 void printVec(vector<T> listOfThings)
@@ -31,7 +34,7 @@ int main()
 	vector<string> orangeAttributes =
 	{
 		"Fruit",
-		"Grow on trees",
+		"Grow on trees", //the intersection of the two sets is not empty 
 		"Orange ...",
 		"Rough skin",
 		"Need warm weather for growing"
@@ -46,10 +49,16 @@ int main()
 
 	vector<string> SHAREDattributes; //"intersection"
 	//SHAREDattributes.reserve(10); 
+
+	//std::set_intersection(appleAttributes.begin(), appleAttributes.end(),
+	//	orangeAttributes.begin(), orangeAttributes.end(), std::back_inserter(SHAREDattributes));
+	
+	
 	auto result = std::set_intersection(appleAttributes.begin(), appleAttributes.end(),
 		orangeAttributes.begin(), orangeAttributes.end(),
 		std::back_inserter(SHAREDattributes));
 
+	//cout << result.operator*() <<
 
 	printVec(SHAREDattributes); 
 
